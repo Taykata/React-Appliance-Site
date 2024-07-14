@@ -1,0 +1,29 @@
+.home {
+    text-align: center;
+    font-size: xx-large;
+    margin: 90px;
+}
+
+.btn {
+    height: 100px;
+    background-color: #007acc;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 100%;
+    overflow: hidden;
+    position: static;
+    text-align: center;
+    margin-top: 24px;
+    border: none;
+    padding: 30px;
+
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn:active {
+    background-color: #06b;
+}

@@ -77,6 +77,22 @@
     width: 100%;
 }
 
+.inputFile::file-selector-button {
+    margin: 10px;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #007acc;
+    transition: all 0.2s ease;
+    box-shadow: 5px 5px 5px darkgrey;
+    border: none;
+    margin-left: 0px;
+}
+
+.inputFile::file-selector-button:active {
+    transform: scale(0.9);
+}
+
 .cut {
     background-color: #15172b;
     border-radius: 10px;

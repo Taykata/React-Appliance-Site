@@ -23,9 +23,9 @@ export default function AddAppliance() {
                 <div className={styles.title}>Add Appliance</div>
                 <form onSubmit={handleSubmit}>
                     <div className={`${styles.inputContainer} ${styles.ic1}`}>
-                        <label htmlFor="imgUpload" className={styles.placeholder}>
+                        {/* <label htmlFor="imgUpload" className={styles.placeholder}>
                             Upload Image
-                        </label>
+                        </label> */}
                         <input id="imgUpload" className={styles.inputFile} type="file" accept="image/*" onChange={handleFileChange} />
                         <div className={styles.cut} />
                     </div>

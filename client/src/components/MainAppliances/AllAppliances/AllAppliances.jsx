@@ -32,23 +32,22 @@ export default function AllAppliances() {
             .then(result => setAppliances(result));
     }, []);
 
-    console.log(appliances);
-
     return (
         <>
             <h1 className={style.sectionTitle}>Our Products</h1>
             <div className={style.container}>
-                {products.map((product, index) => (
-                    <div key={index} className={style.card}>
-                        <img src={product.image} alt={product.title} />
-                        <h1>{product.title}</h1>
-                        <p className={style.price}>{product.price}</p>
-                        <button onClick={() => createModal(product)}>Details</button>
+                {appliances.map(appliance => (
+                    <div key={appliance._id} className={style.card}>
+                        <img src={appliance.image} alt={appliance.title} />
+                        <h1>{appliance.title}</h1>
+                        <p className={style.price}>{appliance.price}</p>
+                        <button onClick={() => createModal(appliance)}>Details</button>
                     </div>
                 ))}
             </div>
 
-            {isModalOpen && <ApplianceDetails product={currentProduct} onClose={closeModal} />}
+            {isModalOpen && <ApplianceDetails appliance={currentProduct} onClose={closeModal} />}
         </>
     );
 }
+

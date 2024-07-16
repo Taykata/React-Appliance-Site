@@ -1,5 +1,7 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import styles from './AddAppliance.module.css';
+import * as applianceService from '../../../services/applianceService';
 
 const formInitialState = {
     image: '',
@@ -10,6 +12,7 @@ const formInitialState = {
 }
 
 export default function AddAppliance() {
+    const navigate = useNavigate();
     const [formValues, setFormValues] = useState(formInitialState);
     const [preview, setPreview] = useState(null);
 
@@ -33,17 +36,17 @@ export default function AddAppliance() {
 
     }
 
-    const resetFormHandler = () => {
-        setFormValues(formInitialState);
-        setPreview(null);
-    }
-
-    const submitHandler = (event) => {
+    const submitHandler = async (event) => {
         event.preventDefault();
         
-        console.log(formValues);
-        
-        resetFormHandler()
+        try {
+            await applianceService.create(formValues);
+    
+            navigate('/all-appliances');
+        } catch (err) {
+            // Error Notification
+            console.log(err);
+        }
     };
 
     return (

@@ -1,8 +1,6 @@
 import style from './ApplianceDetails.module.css';
 
-export default function ApplianceDetails({ product, onClose }) {
-    if (!product) return null;
-
+export default function ApplianceDetails({ appliance, onClose }) {
     return (
         <div className={style.backdrop} onClick={onClose}>
             <div className={style.modal} onClick={e => e.stopPropagation()}>
@@ -27,13 +25,13 @@ export default function ApplianceDetails({ product, onClose }) {
                         </button>
                     </header>
                     <section className={`${style.modalContainerBody} ${style.rtf}`}>
-                        <img className={style.img} src={product.image} alt="Product's image" />
+                        <img className={style.img} src={appliance.image} alt="Product's image" />
                         <div className={style.rightContainer}>
-                            <p className={style.right}>Title: {product.title}</p>
-                            <p className={style.right}>Brand: {product.brand}</p>
-                            <p className={style.right}>Price: {product.price}</p>
+                            <p className={style.right}>Title: {appliance.title}</p>
+                            <p className={style.right}>Brand: {appliance.brand}</p>
+                            <p className={style.right}>Price: {appliance.price}</p>
                         </div>
-                        <p className={style.description}>{product.description}</p>
+                        <p className={style.description}>{appliance.description}</p>
                     </section>
 {/* 
                     <footer className={style.modalContainerFooter}>

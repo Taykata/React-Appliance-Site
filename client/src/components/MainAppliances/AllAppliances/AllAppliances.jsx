@@ -6,16 +6,16 @@ import * as applianceService from '../../../services/applianceService';
 export default function AllAppliances() {
     const [appliances, setAppliances] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
-    const [currentProduct, setCurrentProduct] = useState(null);
+    const [currentAppliance, setCurrentAppliance] = useState(null);
 
     const createModal = (appliance) => {
-        setCurrentProduct(appliance);
+        setCurrentAppliance(appliance);
         setModalOpen(true);
     };
 
     const closeModal = () => {
         setModalOpen(false);
-        setCurrentProduct(null);
+        setCurrentAppliance(null);
     };
 
     useEffect(() => {
@@ -37,7 +37,7 @@ export default function AllAppliances() {
                 ))}
             </div>
 
-            {isModalOpen && <ApplianceDetails appliance={currentProduct} onClose={closeModal} />}
+            {isModalOpen && <ApplianceDetails appliance={currentAppliance} onClose={closeModal} />}
         </>
     );
 }

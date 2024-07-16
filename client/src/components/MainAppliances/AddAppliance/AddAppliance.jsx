@@ -23,10 +23,18 @@ export default function AddAppliance() {
             const file = files[0];
             const previewURL = URL.createObjectURL(file)
             setPreview(previewURL);
-            setFormValues(state => ({
-                ...state,
-                [name]: previewURL
-            }))
+
+            const fr = new FileReader();
+            fr.onload = () => {
+                const url = fr.result;
+                setFormValues(state => ({
+                    ...state,
+                    [name]: url
+                }))
+            }
+            fr.readAsDataURL(file);
+
+            
         } else {
             setFormValues(state => ({
                 ...state,

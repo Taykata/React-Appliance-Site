@@ -1,0 +1,26 @@
+{
+    "ad0f41d1-591c-438e-b248-6cbc75291b26": {
+        "image": "washingMachine",
+        "title": "Washing Machine",
+        "brand": "Bosch",
+        "price": "$549.99",
+        "description": "Introducing the Bosch Washing Machine, designed to effortlessly handle your laundry needs with precision and ease. Built for efficiency and reliability, this washing machine is the perfect blend of advanced technology and user-friendly features.",
+        "_id": "ad0f41d1-591c-438e-b248-6cbc75291b26"
+    },
+    "0c251861-0d6d-4a0c-bb55-fc40b8e66332": {
+        "image": "oven",
+        "title": "Oven",
+        "brand": "Beko",
+        "price": "$244.99",
+        "description": "Transform your kitchen into a culinary haven with the MasterChef 5000 Electric Convection Oven. Perfect for aspiring chefs and seasoned cooks alike, this oven combines cutting-edge technology with intuitive design to elevate your cooking experience.",
+        "_id": "0c251861-0d6d-4a0c-bb55-fc40b8e66332"
+    },
+    "e841b329-d930-4e5e-8bfe-a642213498b9": {
+        "image": "dishwasher",
+        "title": "Dishwasher",
+        "brand": "Miele",
+        "price": "$269.99",
+        "description": "Simplify your kitchen cleanup with the SparkleClean 3000 Series Dishwasher, a powerhouse appliance designed to handle your dishes with efficiency and style. Engineered with advanced technology and user-friendly features, this dishwasher promises to revolutionize the way you clean.",
+        "_id": "e841b329-d930-4e5e-8bfe-a642213498b9"
+    }
+}

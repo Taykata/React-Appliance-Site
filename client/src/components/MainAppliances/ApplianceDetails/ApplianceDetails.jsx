@@ -25,11 +25,13 @@ export default function ApplianceDetails({ appliance, onClose }) {
                         </button>
                     </header>
                     <section className={`${style.modalContainerBody} ${style.rtf}`}>
-                        <img className={style.img} src={appliance.image} alt="Product's image" />
-                        <div className={style.rightContainer}>
-                            <p className={style.right}>Title: {appliance.title}</p>
-                            <p className={style.right}>Brand: {appliance.brand}</p>
-                            <p className={style.right}>Price: {appliance.price}</p>
+                        <div className={style.imageAndDetails}>
+                            <img className={style.img} src={appliance.image} alt="Product's image" />
+                            <div className={style.rightContainer}>
+                                <p className={style.right}>Title: {appliance.title}</p>
+                                <p className={style.right}>Brand: {appliance.brand}</p>
+                                <p className={style.right}>Price: ${appliance.price}</p>
+                            </div>
                         </div>
                         <p className={style.description}>{appliance.description}</p>
                     </section>

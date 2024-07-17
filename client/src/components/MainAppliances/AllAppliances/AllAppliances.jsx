@@ -31,7 +31,7 @@ export default function AllAppliances() {
                     <div key={appliance._id} className={style.card}>
                         <img src={appliance.image} alt={appliance.title} />
                         <h1>{appliance.title}</h1>
-                        <p className={style.price}>{appliance.price}</p>
+                        <p className={style.price}>${appliance.price}</p>
                         <button onClick={() => createModal(appliance)}>Details</button>
                     </div>
                 ))}

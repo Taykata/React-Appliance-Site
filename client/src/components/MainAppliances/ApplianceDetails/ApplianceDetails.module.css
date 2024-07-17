@@ -20,20 +20,19 @@
     max-width: 500px;
 }
 
-.rightContainer {
+.imageAndDetails {
     display: flex;
-    flex-direction: column;
+    gap: 16px;
 }
 
 .img {
-    width: 150px;
-    height: auto;
+    height: 180px;
+    width: auto;
     align-self: flex-start;
 }
 
 .right {
-    align-self: flex-start;
-    margin-left: 16px;
+    margin: 15px 30px 30px 10px;
 }
 
 .description {

@@ -10,8 +10,15 @@ import Register from './components/auth/Register/Register';
 import Footer from './components/Footer/Footer';
 import ApplianceDetails from './components/MainAppliances/ApplianceDetails/ApplianceDetails';
 import NotFound from './components/NotFound/NotFound';
+import { useState } from 'react';
 
 export default function App() {
+    const [auth, setAuth] = useState({});
+
+    const loginSubmitHandler = (values) => {
+        console.log(values);
+    }
+
     return (
         <>
             <Navigation />
@@ -22,7 +29,7 @@ export default function App() {
                 <Route path='/add-appliance' element={<AddAppliance />} />
                 <Route path='/my-profile' element={<MyProfile />} />
                 <Route path='/logout' element={<Logout />} />
-                <Route path='/login' element={<Login />} />
+                <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler} />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/details' element={<ApplianceDetails />} />
                 <Route path='*' element={<NotFound />} />

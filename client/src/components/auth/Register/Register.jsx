@@ -9,21 +9,39 @@ export default function Register() {
                     <label htmlFor="email" className={style.placeholder}>
                         Email
                     </label>
-                    <input id="email" className={style.input} type="email" placeholder=" " />
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        className={style.input}
+                        placeholder=" "
+                    />
                     <div className={style.cut} />
                 </div>
                 <div className={`${style.inputContainer} ${style.ic2}`}>
                     <label htmlFor="password" className={style.placeholder}>
                         Password
                     </label>
-                    <input id="password" className={style.input} type="password" placeholder=" " />
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        className={style.input}
+                        placeholder=" "
+                    />
                     <div className={style.cut} />
                 </div>
                 <div className={`${style.inputContainer} ${style.ic2}`}>
                     <label htmlFor="rePass" className={style.placeholder}>
                         Repeat Password
                     </label>
-                    <input id="rePass" className={style.input} type="password" placeholder=" " />
+                    <input
+                        type="password"
+                        id="rePass"
+                        name="rePass"
+                        className={style.input}
+                        placeholder=" "
+                    />
                     <div className={`${style.cut} ${style.cutShort}`} />
                 </div>
                 <button type="text" className={style.submit}>

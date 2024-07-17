@@ -1,10 +1,17 @@
 import useForm from '../../../hooks/useForm';
 import style from './Login.module.css';
 
-export default function Login() {
-    const { values, onChange, onSubmit } = useForm({
-        email: '',
-        password: ''
+const LoginFormKeys = {
+    email: 'email',
+    password: 'password'
+}
+
+export default function Login({
+    loginSubmitHandler
+}) {
+    const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+        [LoginFormKeys.email]: '',
+        [LoginFormKeys.password]: ''
     });
 
     return (
@@ -16,11 +23,12 @@ export default function Login() {
                         Email
                     </label>
                     <input
-                        id="email"
-                        className={style.input}
                         type="email"
+                        id="email"
+                        name={LoginFormKeys.email}
+                        className={style.input}
                         placeholder=" "
-                        value={values.email}
+                        value={values[LoginFormKeys.email]}
                         onChange={onChange}
                     />
                     <div className={style.cut} />
@@ -30,11 +38,12 @@ export default function Login() {
                         Password
                     </label>
                     <input
-                        id="password"
-                        className={style.input}
                         type="password"
+                        id="password"
+                        name={LoginFormKeys.password}
+                        className={style.input}
                         placeholder=" "
-                        value={values.password}
+                        value={values[LoginFormKeys.password]}
                         onChange={onChange}
                     />
                     <div className={style.cut} />

@@ -3,7 +3,7 @@ import style from './Register.module.css';
 export default function Register() {
     return (
         <div className={style.container}>
-            <div className={style.form}>
+            <form className={style.form}>
                 <div className={style.title}>Register</div>
                 <div className={`${style.inputContainer} ${style.ic1}`}>
                     <label htmlFor="email" className={style.placeholder}>
@@ -29,7 +29,7 @@ export default function Register() {
                 <button type="text" className={style.submit}>
                     Register
                 </button>
-            </div>
+            </form>
         </div>
     );
 }

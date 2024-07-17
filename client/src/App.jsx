@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import AuthContext from './contexts/authContext';
 import Navigation from './components/Navigation/Navigation';
 import Home from './components/Home/Home';
 import AllAppliances from './components/MainAppliances/AllAppliances/AllAppliances';
@@ -20,7 +21,7 @@ export default function App() {
     }
 
     return (
-        <>
+        <AuthContext.Provider value={{ loginSubmitHandler }}>
             <Navigation />
 
             <Routes>
@@ -29,13 +30,13 @@ export default function App() {
                 <Route path='/add-appliance' element={<AddAppliance />} />
                 <Route path='/my-profile' element={<MyProfile />} />
                 <Route path='/logout' element={<Logout />} />
-                <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler} />} />
+                <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/details' element={<ApplianceDetails />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
 
             <Footer />
-        </>
+        </AuthContext.Provider>
     )
 }

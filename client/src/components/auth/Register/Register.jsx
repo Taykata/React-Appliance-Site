@@ -1,9 +1,26 @@
+import { useContext } from 'react';
+
+import AuthContext from '../../../contexts/authContext';
 import style from './Register.module.css';
+import useForm from '../../../hooks/useForm';
+
+const RegisterFormKeys = {
+    email: 'email',
+    password: 'password',
+    rePass: 'rePass'
+};
 
 export default function Register() {
+    const {registerSubmitHandler} = useContext(AuthContext);
+    const {values, onChange, onSubmit} = useForm(registerSubmitHandler, {
+        [RegisterFormKeys.email]: '',
+        [RegisterFormKeys.password]: '',
+        [RegisterFormKeys.rePass]: ''
+    });
+
     return (
         <div className={style.container}>
-            <form className={style.form}>
+            <form className={style.form} onSubmit={onSubmit}>
                 <div className={style.title}>Register</div>
                 <div className={`${style.inputContainer} ${style.ic1}`}>
                     <label htmlFor="email" className={style.placeholder}>
@@ -15,6 +32,8 @@ export default function Register() {
                         name="email"
                         className={style.input}
                         placeholder=" "
+                        values={values[RegisterFormKeys.email]}
+                        onChange={onChange}
                     />
                     <div className={style.cut} />
                 </div>
@@ -28,6 +47,8 @@ export default function Register() {
                         name="password"
                         className={style.input}
                         placeholder=" "
+                        values={values[RegisterFormKeys.password]}
+                        onChange={onChange}
                     />
                     <div className={style.cut} />
                 </div>
@@ -41,6 +62,8 @@ export default function Register() {
                         name="rePass"
                         className={style.input}
                         placeholder=" "
+                        values={values[RegisterFormKeys.rePass]}
+                        onChange={onChange}
                     />
                     <div className={`${style.cut} ${style.cutShort}`} />
                 </div>

@@ -28,8 +28,20 @@ export default function App() {
         navigate('/');
     }
 
+    const registerSubmitHandler = async (values) => {
+        console.log(values);
+    }
+
+    const values = {
+        loginSubmitHandler,
+        registerSubmitHandler,
+        username: auth.username,
+        email: auth.email,
+        isAuthenticated: !!auth.username
+    }
+
     return (
-        <AuthContext.Provider value={{ loginSubmitHandler }}>
+        <AuthContext.Provider value={values}>
             <Navigation />
 
             <Routes>

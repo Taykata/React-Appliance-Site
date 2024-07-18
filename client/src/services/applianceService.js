@@ -1,14 +1,14 @@
 import * as request from "../lib/request";
 
-const baseUrl = 'http://localhost:3030/jsonstore/appliances';
+const baseUrl = 'http://localhost:3030/data/appliances';
 
-export const getAll = async () => {
+export const getAllAppliances = async () => {
     const result = await request.get(baseUrl);
 
-    return Object.values(result);
+    return result;
 }
 
-export const create = async (applianceData) => {
+export const createAppliance = async (applianceData) => {
     const result = await request.post(baseUrl, applianceData);
 
     return result;

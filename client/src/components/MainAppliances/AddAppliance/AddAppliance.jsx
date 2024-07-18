@@ -48,7 +48,7 @@ export default function AddAppliance() {
         event.preventDefault();
         
         try {
-            await applianceService.create(formValues);
+            await applianceService.createAppliance(formValues);
     
             navigate('/all-appliances');
         } catch (err) {

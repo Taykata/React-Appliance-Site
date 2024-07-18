@@ -19,7 +19,7 @@ export default function AllAppliances() {
     };
 
     useEffect(() => {
-        applianceService.getAll()
+        applianceService.getAllAppliances()
             .then(result => setAppliances(result));
     }, []);
 

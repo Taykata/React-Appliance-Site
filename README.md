@@ -11,13 +11,14 @@ This project is a web application built with React.js that showcases various hom
 
 To clone and run this application locally, you will need Git and Node.js (which comes with npm) installed on your computer.
 
-1. Clone this repository:
+1. Clone the repository:
     ```bash
     git clone https://github.com/Taykata/React-Appliance-Site.git
 
-2. Go into the repository directory:
+2. Navigate to the client directory:
     ```bash
     cd React-Appliance-Site
+    cd client
 
 3. Install dependencies:
     ```bash
@@ -25,11 +26,20 @@ To clone and run this application locally, you will need Git and Node.js (which 
 
 4. Start the development server:
     ```bash
-    npm start
+    npm run dev
 
-5. Open your browser and visit:
+5. Open a new terminal and navigate to the server directory:
     ```bash
-    http://localhost:3000/
+    cd React-Appliance-Site
+    cd server
+
+6. Start the server:
+    ```bash
+    node server.js
+
+7. Open your browser and visit the application:
+    ```bash
+    http://localhost:5173/
 
 ## Usage
 - Browse through the list of appliances.

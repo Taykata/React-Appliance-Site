@@ -1,10 +1,18 @@
 const buildOptions = (data) => {
     const options = {};
+    const accessToken = localStorage.getItem('accessToken');
 
     if (data) {
         options.body = JSON.stringify(data);
         options.headers = {
             'content-type': 'application/json'
+        };
+    }
+
+    if (accessToken) {
+        options.headers = {
+            ...options.headers,
+            'X-Authorization': accessToken
         };
     }
 
@@ -17,7 +25,15 @@ const request = async (method, url, data) => {
         method
     });
 
+    if (response.status === 204) {
+        return {};
+    }
+
     const result = await response.json();
+
+    if (!response.ok) {
+        throw result;
+    }
 
     return result;
 }

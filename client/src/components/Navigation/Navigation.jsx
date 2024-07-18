@@ -6,10 +6,7 @@ import style from './Navigation.module.css';
 import homeImg from '../../assets/homeImg.png';
 
 export default function Navigation() {
-    const {
-        isAuthenticated,
-        username
-    } = useContext(AuthContext);
+    const { isAuthenticated } = useContext(AuthContext);
 
     return (
         <div className={style.topnav}>

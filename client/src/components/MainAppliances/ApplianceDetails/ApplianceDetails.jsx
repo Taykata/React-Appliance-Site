@@ -1,6 +1,12 @@
+import { useContext } from 'react';
+
+import AuthContext from '../../../contexts/authContext';
 import style from './ApplianceDetails.module.css';
 
 export default function ApplianceDetails({ appliance, onClose }) {
+    const { userId } = useContext(AuthContext);
+    const isOwner = userId === appliance._ownerId;
+
     return (
         <div className={style.backdrop} onClick={onClose}>
             <div className={style.modal} onClick={e => e.stopPropagation()}>
@@ -35,12 +41,13 @@ export default function ApplianceDetails({ appliance, onClose }) {
                         </div>
                         <p className={style.description}>{appliance.description}</p>
                     </section>
-{/* 
-                    <footer className={style.modalContainerFooter}>
-                        <button className={`${style.button} ${style.isGhost}`}>Edit</button>
-                        <button className={`${style.button} ${style.isPrimary}`}>Delete</button>
-                    </footer>
-*/}
+
+                    {isOwner && (
+                        <footer className={style.modalContainerFooter}>
+                            <button className={`${style.button} ${style.isGhost}`}>Edit</button>
+                            <button className={`${style.button} ${style.isPrimary}`}>Delete</button>
+                        </footer>
+                    )}
                 </article>
             </div>
         </div>

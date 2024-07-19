@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import style from './MyProfile.module.css';
 
 export default function MyProfile() {

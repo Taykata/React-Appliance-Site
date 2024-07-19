@@ -2,8 +2,8 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import AuthContext from '../../contexts/authContext';
-import style from './Navigation.module.css';
 import homeImg from '../../assets/homeImg.png';
+import style from './Navigation.module.css';
 
 export default function Navigation() {
     const { isAuthenticated } = useContext(AuthContext);

@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import style from './AddAppliance.module.css';
+import { useNavigate } from 'react-router-dom';
+
 import * as applianceService from '../../../services/applianceService';
+import style from './AddAppliance.module.css';
 
 const formInitialState = {
     image: '',
@@ -41,7 +42,6 @@ export default function AddAppliance() {
                 [name]: value
             }));
         }
-
     }
 
     const submitHandler = async (event) => {

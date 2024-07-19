@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import style from './AllAppliances.module.css';
-import ApplianceDetails from '../ApplianceDetails/ApplianceDetails';
+
 import * as applianceService from '../../../services/applianceService';
+import ApplianceDetails from '../ApplianceDetails/ApplianceDetails';
+import style from './AllAppliances.module.css';
 
 export default function AllAppliances() {
     const [appliances, setAppliances] = useState([]);

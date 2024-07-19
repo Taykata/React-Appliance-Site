@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import AuthContext from '../../../contexts/authContext';
 import style from './ApplianceDetails.module.css';
@@ -6,6 +7,10 @@ import style from './ApplianceDetails.module.css';
 export default function ApplianceDetails({ appliance, onClose }) {
     const { userId } = useContext(AuthContext);
     const isOwner = userId === appliance._ownerId;
+
+    const onDelete = () => {
+        console.log('delete appliance');
+    }
 
     return (
         <div className={style.backdrop} onClick={onClose}>
@@ -44,8 +49,8 @@ export default function ApplianceDetails({ appliance, onClose }) {
 
                     {isOwner && (
                         <footer className={style.modalContainerFooter}>
-                            <button className={`${style.button} ${style.isGhost}`}>Edit</button>
-                            <button className={`${style.button} ${style.isPrimary}`}>Delete</button>
+                            <Link to={`/edit/${appliance._id}`}><button className={`${style.button} ${style.isGhost}`}>Edit</button></Link>
+                            <button className={`${style.button} ${style.isPrimary}`} onClick={onDelete}>Delete</button>
                         </footer>
                     )}
                 </article>

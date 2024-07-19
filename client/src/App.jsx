@@ -13,6 +13,7 @@ import Register from './components/auth/Register/Register';
 import Footer from './components/Footer/Footer';
 import ApplianceDetails from './components/MainAppliances/ApplianceDetails/ApplianceDetails';
 import NotFound from './components/NotFound/NotFound';
+import EditAppliance from './components/MainAppliances/EditAppliance/EditAppliance';
 
 export default function App() {
     return (
@@ -23,11 +24,12 @@ export default function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/all-appliances' element={<AllAppliances />} />
                 <Route path='/add-appliance' element={<AddAppliance />} />
+                <Route path='/details' element={<ApplianceDetails />} />
+                <Route path='/edit/:applianceId' element={<EditAppliance />} />
                 <Route path='/my-profile' element={<MyProfile />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
-                <Route path='/details' element={<ApplianceDetails />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
 

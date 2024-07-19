@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import style from './AddAppliance.module.css';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import * as applianceService from '../../../services/applianceService';
+import style from './EditAppliance.module.css';
 
 const formInitialState = {
     image: '',
@@ -11,10 +12,25 @@ const formInitialState = {
     description: ''
 }
 
-export default function AddAppliance() {
+export default function EditAppliance() {
     const navigate = useNavigate();
+    const { applianceId } = useParams();
     const [formValues, setFormValues] = useState(formInitialState);
     const [preview, setPreview] = useState(null);
+
+    useEffect(() => {
+        const fetchAppliance = async () => {
+            try {
+                const appliance = await applianceService.getOneAppliance(applianceId);
+                setFormValues(appliance);
+                setPreview(appliance.image);
+            } catch (error) {
+                console.error('Failed to fetch appliance:', error);
+            }
+        };
+
+        fetchAppliance();
+    }, [applianceId]);
 
     const changeHandler = (e) => {
         const { name, value, files } = e.target;
@@ -34,7 +50,7 @@ export default function AddAppliance() {
             }
             fr.readAsDataURL(file);
 
-            
+
         } else {
             setFormValues(state => ({
                 ...state,
@@ -48,7 +64,7 @@ export default function AddAppliance() {
         event.preventDefault();
         
         try {
-            await applianceService.createAppliance(formValues);
+            await applianceService.editAppliance(applianceId, formValues);
     
             navigate('/all-appliances');
         } catch (err) {
@@ -60,7 +76,7 @@ export default function AddAppliance() {
     return (
         <div className={style.container}>
             <div className={style.form}>
-                <div className={style.title}>Add Appliance</div>
+                <div className={style.title}>Edit Appliance</div>
                 <form onSubmit={submitHandler}>
                     <div className={`${style.inputContainer} ${style.ic1}`}>
                         <label htmlFor="image" className={style.placeholder}></label>
@@ -134,7 +150,7 @@ export default function AddAppliance() {
                         <div className={`${style.cut} ${style.cutShort}`} />
                     </div>
                     <button type="submit" className={style.submit}>
-                        Create
+                        Edit
                     </button>
                 </form>
             </div>

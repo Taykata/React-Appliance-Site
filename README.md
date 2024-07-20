@@ -6,6 +6,10 @@ This project is a web application built with React.js that showcases various hom
 
 - View a list of appliances
 - Detailed information and specifications for each appliance
+- Add your own appliances
+- Edit existing appliances
+- Delete appliances
+- User registration and login
 
 ## Installation
 
@@ -40,11 +44,6 @@ To clone and run this application locally, you will need Git and Node.js (which 
 7. Open your browser and visit the application:
     ```bash
     http://localhost:5173/
-
-## Usage
-- Browse through the list of appliances.
-- Click on an appliance to view more details.
-- Enjoy exploring the site and its features!
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.

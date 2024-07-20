@@ -14,6 +14,13 @@ export const getOneAppliance = async (applianceId) => {
     return result;
 }
 
+export const getAppliancesForUser = async (userId) => {
+    const query = new URLSearchParams({ where: `_ownerId="${userId}"` });
+    const result = await request.get(`${baseUrl}?${query}`);
+
+    return result;
+}
+
 export const createAppliance = async (applianceData) => {
     const result = await request.post(baseUrl, applianceData);
 

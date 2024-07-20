@@ -32,3 +32,7 @@ export const editAppliance = async (applianceId, applianceData) => {
 
     return result;
 }
+
+export const deleteAppliance = async (applianceId) => {
+    await request.remove(`${baseUrl}/${applianceId}`);
+}

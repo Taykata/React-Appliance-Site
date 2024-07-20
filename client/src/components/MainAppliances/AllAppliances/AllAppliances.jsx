@@ -8,6 +8,7 @@ export default function AllAppliances() {
     const [appliances, setAppliances] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentAppliance, setCurrentAppliance] = useState(null);
+    const [refreshKey, setRefreshKey] = useState(0);
 
     const createModal = (appliance) => {
         setCurrentAppliance(appliance);
@@ -17,12 +18,13 @@ export default function AllAppliances() {
     const closeModal = () => {
         setModalOpen(false);
         setCurrentAppliance(null);
+        setRefreshKey(prevKey => prevKey + 1);
     };
 
     useEffect(() => {
         applianceService.getAllAppliances()
             .then(result => setAppliances(result));
-    }, []);
+    }, [refreshKey]);
 
     return (
         <>
@@ -38,7 +40,7 @@ export default function AllAppliances() {
                 ))}
             </div>
 
-            {isModalOpen && <ApplianceDetails appliance={currentAppliance} onClose={closeModal} />}
+            {isModalOpen && <ApplianceDetails appliance={currentAppliance} onClose={closeModal}/>}
         </>
     );
 }

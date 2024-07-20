@@ -1,15 +1,25 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import * as applianceService from '../../../services/applianceService';
 import AuthContext from '../../../contexts/authContext';
 import style from './ApplianceDetails.module.css';
 
 export default function ApplianceDetails({ appliance, onClose }) {
+    const navigate = useNavigate();
     const { userId } = useContext(AuthContext);
     const isOwner = userId === appliance._ownerId;
 
-    const onDelete = () => {
-        console.log('delete appliance');
+    const onDelete = async () => {
+        const isConfirmed = confirm(`Are you sure you want to delete ${appliance.title}?`);
+
+        if (isConfirmed) {
+
+            await applianceService.deleteAppliance(appliance._id);
+
+            onClose();
+            navigate('/all-appliances');
+        }
     }
 
     return (

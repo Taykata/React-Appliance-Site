@@ -123,11 +123,11 @@ export default function AddAppliance() {
                         <label htmlFor="description" className={style.placeholder}>
                             Description
                         </label>
-                        <input
+                        <textarea
                             type="text"
                             id="description"
                             name="description"
-                            className={style.input}
+                            className={`${style.input} ${style.description}`}
                             value={formValues.description}
                             onChange={changeHandler}
                         />

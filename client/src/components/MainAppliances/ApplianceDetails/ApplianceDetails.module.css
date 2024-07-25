@@ -20,6 +20,12 @@
     max-width: 500px;
 }
 
+.reviewsTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .imageAndDetails {
     display: flex;
     gap: 16px;
@@ -33,10 +39,12 @@
 
 .right {
     margin: 15px 30px 30px 10px;
+    font-size: 20px;
 }
 
 .description {
     margin-top: 16px;
+    font-size: 20px;
 }
 
 

@@ -5,6 +5,8 @@ import * as applianceService from '../../../services/applianceService';
 import AuthContext from '../../../contexts/authContext';
 import style from './ApplianceDetails.module.css';
 
+import ApplianceComments from '../ApplianceComments/ApplianceComments';
+
 export default function ApplianceDetails({ appliance, onClose }) {
     const navigate = useNavigate();
     const { userId } = useContext(AuthContext);
@@ -55,6 +57,9 @@ export default function ApplianceDetails({ appliance, onClose }) {
                             </div>
                         </div>
                         <p className={style.description}>{appliance.description}</p>
+
+                        <h1 className={style.reviewsTitle}>Reviews:</h1>
+                        <ApplianceComments />
                     </section>
 
                     {isOwner && (

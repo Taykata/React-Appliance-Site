@@ -1,0 +1,150 @@
+.commentBlock {
+    font-size: 1rem;
+
+    color: darkgray;
+    background-color: #f0f0f0;
+    border-radius: 30px;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0 auto;
+    padding: 10px;
+
+    .createNewComment {
+        width: 100%;
+        padding: 20px 0;
+
+        .inputComment {
+            display: inline-block;
+            vertical-align: middle;
+
+            margin-left: 10px;
+            width: calc(100% - 75px);
+
+            .inputText {
+                width: 385px;
+
+                font-weight: 300;
+                font-size: 1.3rem;
+
+                padding: 10px;
+
+                border: none;
+                border-bottom: 2px solid lighten(grey, 15%);
+                border-radius: 10px;
+
+                &:focus {
+                    outline: none;
+                    border-bottom: 2px solid lighten(grey, 10%);
+                }
+            }
+        }
+    }
+
+    .newComment {
+        width: 100%;
+        height: auto;
+        border-top: 1px solid lighten(grey, 10%);
+
+        .userComment {
+            list-style-type: none;
+            list-style-position: inside;
+            margin: 0;
+            padding: 0;
+        }
+
+        .commentBody {
+            width: 95%;
+            min-height: 65px;
+            margin: 10px;
+            padding: 20px;
+            font-size: .9rem;
+            color: #555;
+            background-color: #dcdcdc;
+            border-radius: 10px;
+            border-bottom: 2px solid lighten(grey, 15%);
+            font-size: 20px;
+
+            .repliedTo {
+                margin: 5px 0px;
+                background-color: lighten(grey, 18%);
+                border-bottom: 2px solid lighten(grey, 15%);
+                border-radius: 5px;
+
+                p {
+                    padding: 5px;
+                }
+
+                span {
+                    color: blue;
+                    margin-right: 2px;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .commentToolbar {
+            width: 100%;
+
+            ul {
+                list-style-type: none;
+                padding-left: 75px;
+                font-size: 0;
+
+                li {
+                    display: inline-block;
+                    padding: 5px;
+                    font-size: .7rem;
+                    color: lighten(grey, 5%);
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .commentDetails {
+                display: inline-block;
+                vertical-align: middle;
+                width: 70%;
+                text-align: left;
+            }
+
+            .commentTools {
+                display: inline-block;
+                vertical-align: middle;
+                width: 30%;
+                text-align: right;
+
+                li {
+                    &:hover {
+                        color: grey;
+                    }
+                }
+            }
+
+            /* replies */
+        }
+
+        .love {
+            &:hover {
+                color: red;
+            }
+        }
+    }
+
+}
+
+.replay {
+    position: relative;
+    padding-left: 50px;
+}
+
+.replay::before {
+    content: '⤷';
+    font-size: 2rem;
+    position: absolute;
+    left: 30px;
+    color: darkgray;
+}

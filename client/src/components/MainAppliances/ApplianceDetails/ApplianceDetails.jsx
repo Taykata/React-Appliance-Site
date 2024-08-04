@@ -59,7 +59,7 @@ export default function ApplianceDetails({ appliance, onClose }) {
                         <p className={style.description}>{appliance.description}</p>
 
                         <h1 className={style.reviewsTitle}>Reviews:</h1>
-                        <ApplianceComments />
+                        <ApplianceComments appliance={appliance} />
                     </section>
 
                     {isOwner && (

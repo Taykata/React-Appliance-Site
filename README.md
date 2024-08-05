@@ -10,6 +10,9 @@ This project is a web application built with React.js that showcases various hom
 - Edit existing appliances
 - Delete appliances
 - User registration and login
+- Add comments to appliance listings
+- Delete comments
+- Reply to comments
 
 ## Installation
 

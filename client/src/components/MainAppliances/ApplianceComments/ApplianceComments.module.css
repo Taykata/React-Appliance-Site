@@ -179,3 +179,43 @@
     padding-bottom: 10px;
     font-size: 20px;
 }
+
+.faClock {
+    padding-right: 90px;
+}
+
+.replyImg {
+    height: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.replyBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.deleteImg {
+    height: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.deleteBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btns:hover {
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: #c0c0c0;
+}
+
+.faClockReply {
+    padding-right: 40px;
+}

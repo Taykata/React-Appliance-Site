@@ -1,13 +1,14 @@
 import { useEffect, useState, useContext, useRef } from 'react';
+
 import * as commentService from '../../../services/commentService';
 import AuthContext from '../../../contexts/authContext';
 import style from './ApplianceComments.module.css';
 
 export default function ApplianceComments({ appliance }) {
     const [comments, setComments] = useState([]);
-    const { isAuthenticated, username } = useContext(AuthContext);
+    const { isAuthenticated, username, userId } = useContext(AuthContext);
     const inputRef = useRef(null);
-
+    
     let commentUsername;
 
     if (username?.includes('@')) {
@@ -49,13 +50,12 @@ export default function ApplianceComments({ appliance }) {
         }
     }
 
-    // Function to format date
     const formatDate = (timestamp) => {
         const date = new Date(timestamp);
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
         const day = date.getDate().toString().padStart(2, '0');
-        const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are 0-11
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
         const year = date.getFullYear();
 
         return {
@@ -63,6 +63,12 @@ export default function ApplianceComments({ appliance }) {
             dateString: `${day}/${month}/${year}`
         };
     };
+
+    const onDelete = async (commentId) => {
+        await commentService.deleteComment(commentId);
+
+        setComments(prevComments => prevComments.filter(comment => comment._id !== commentId));
+    }
 
     return (
         <>
@@ -125,6 +131,20 @@ export default function ApplianceComments({ appliance }) {
                                                 <li>
                                                     <i className={`${style.fa} ${style.faCalendar}`} /> {dateString}
                                                 </li>
+                                                {isAuthenticated && (
+                                                <li className={style.btns}>
+                                                    <button className={style.replyBtn}>
+                                                        <img className={style.replyImg} src="/images/reply-16.png" alt="reply" />
+                                                    </button>
+                                                </li>
+                                                )}
+                                                {userId === comment._ownerId && (
+                                                <li className={style.btns}>
+                                                    <button className={style.deleteBtn} onClick={() => onDelete(comment._id)} >
+                                                        <img className={style.deleteImg} src="/images/waste_bin.png" alt="delte" />
+                                                    </button>
+                                                </li>
+                                                )}
                                             </ul>
                                         </div>
                                     </div>
@@ -144,10 +164,20 @@ export default function ApplianceComments({ appliance }) {
                                             <div className={style.commentDetails}>
                                                 <ul>
                                                     <li>
-                                                        <i className={`${style.fa} ${style.faClock}`} /> 14:52
+                                                        <i className={`${style.fa} ${style.faClockReply}`} /> 14:52
                                                     </li>
                                                     <li>
                                                         <i className={`${style.fa} ${style.faCalendar}`} /> 04/01/2015
+                                                    </li>
+                                                    <li className={style.btns}>
+                                                        <button className={style.replyBtn}>
+                                                            <img className={style.replyImg} src="/images/reply-16.png" alt="reply" />
+                                                        </button>
+                                                    </li>
+                                                    <li className={style.btns}>
+                                                        <button className={style.deleteBtn}>
+                                                            <img className={style.deleteImg} src="/images/waste_bin.png" alt="delte" />
+                                                        </button>
                                                     </li>
                                                 </ul>
                                             </div>

@@ -25,3 +25,7 @@ export const createComment = async (applianceId, username, text) => {
 
     return newComment;
 }
+
+export const deleteComment = async (commentId) => {
+    await request.remove(`${baseUrl}/${commentId}`);
+}

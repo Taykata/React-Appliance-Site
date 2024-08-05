@@ -16,6 +16,7 @@ export default function AddAppliance() {
     const navigate = useNavigate();
     const [formValues, setFormValues] = useState(formInitialState);
     const [preview, setPreview] = useState(null);
+    const [error, setError] = useState('');
 
     const changeHandler = (e) => {
         const { name, value, files } = e.target;
@@ -44,9 +45,23 @@ export default function AddAppliance() {
         }
     }
 
+    const validateForm = () => {
+        const { image, title, brand, price, description } = formValues;
+        if (!image || !title || !brand || !price || !description) {
+            setError('Please fill in all fields and select a file before submitting.');
+            return false;
+        }
+        setError('');
+        return true;
+    }
+
     const submitHandler = async (event) => {
         event.preventDefault();
         
+        if (!validateForm()) {
+            return;
+        }
+
         try {
             await applianceService.createAppliance(formValues);
     
@@ -133,6 +148,7 @@ export default function AddAppliance() {
                         />
                         <div className={`${style.cut} ${style.cutShort}`} />
                     </div>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
                     <button type="submit" className={style.submit}>
                         Create
                     </button>

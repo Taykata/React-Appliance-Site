@@ -11,8 +11,8 @@ const RegisterFormKeys = {
 };
 
 export default function Register() {
-    const {registerSubmitHandler} = useContext(AuthContext);
-    const {values, onChange, onSubmit} = useForm(registerSubmitHandler, {
+    const { registerSubmitHandler } = useContext(AuthContext);
+    const { values, onChange, onSubmit, error } = useForm(registerSubmitHandler, {
         [RegisterFormKeys.email]: '',
         [RegisterFormKeys.password]: '',
         [RegisterFormKeys.rePass]: ''
@@ -70,6 +70,7 @@ export default function Register() {
                 <button type="text" className={style.submit}>
                     Register
                 </button>
+                {error && <p className={style.errorMessage} style={{ color: 'red' }}>{error}</p>}
             </form>
         </div>
     );

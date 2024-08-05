@@ -17,6 +17,7 @@ export default function EditAppliance() {
     const { applianceId } = useParams();
     const [formValues, setFormValues] = useState(formInitialState);
     const [preview, setPreview] = useState(null);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchAppliance = async () => {
@@ -60,12 +61,26 @@ export default function EditAppliance() {
 
     }
 
+    const validateForm = () => {
+        const { image, title, brand, price, description } = formValues;
+        if (!image || !title || !brand || !price || !description) {
+            setError('Please fill in all fields and select a file before submitting.');
+            return false;
+        }
+        setError('');
+        return true;
+    }
+
     const submitHandler = async (event) => {
         event.preventDefault();
-        
+
+        if (!validateForm()) {
+            return;
+        }
+
         try {
             await applianceService.editAppliance(applianceId, formValues);
-    
+
             navigate('/all-appliances');
         } catch (err) {
             // Error Notification
@@ -149,6 +164,7 @@ export default function EditAppliance() {
                         />
                         <div className={`${style.cut} ${style.cutShort}`} />
                     </div>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
                     <button type="submit" className={style.submit}>
                         Edit
                     </button>

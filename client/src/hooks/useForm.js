@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function useForm(submitHandler, initialValues) {
     const [values, setValues] = useState(initialValues);
+    const [error, setError] = useState('');
 
     const onChange = (e) => {
         setValues(state => ({
@@ -10,15 +11,27 @@ export default function useForm(submitHandler, initialValues) {
         }));
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
-        submitHandler(values);
+        const hasEmptyFields = Object.values(values).some(value => !value.trim());
+        if (hasEmptyFields) {
+            setError('All fields are required.');
+            return;
+        }
+
+        try {
+            await submitHandler(values);
+            setError('');
+        } catch (err) {
+            setError(err.message || 'An error occurred');
+        }
     }
 
     return {
         values,
         onChange,
-        onSubmit
+        onSubmit,
+        error
     }
 }

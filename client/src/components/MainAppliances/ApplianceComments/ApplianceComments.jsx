@@ -9,6 +9,7 @@ export default function ApplianceComments({ appliance }) {
     const [replyTo, setReplyTo] = useState(null);
     const { isAuthenticated, username, userId } = useContext(AuthContext);
     const inputRef = useRef(null);
+    const [error, setError] = useState('');
 
     let commentUsername;
 
@@ -35,6 +36,13 @@ export default function ApplianceComments({ appliance }) {
 
     const addCommentHandler = async (e) => {
         e.preventDefault();
+
+        if (!inputRef.current.value.trim()) {
+            setError('Comment cannot be empty.');
+            return;
+        }
+
+        setError('');
 
         const formData = new FormData(e.currentTarget);
 
@@ -122,6 +130,7 @@ export default function ApplianceComments({ appliance }) {
                             <input name='comment' type="text" className={style.inputText} placeholder="Join the conversation.." ref={inputRef} />
                             <button className={style.sendButton}>Send</button>
                         </form>
+                        {error && <p className={style.errorMessage} style={{ color: 'red' }}>{error}</p>}
                     </div>)}
 
                 <div className={style.newComment}>

@@ -11,7 +11,7 @@ const LoginFormKeys = {
 
 export default function Login() {
     const { loginSubmitHandler } = useContext(AuthContext);
-    const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+    const { values, onChange, onSubmit, error } = useForm(loginSubmitHandler, {
         [LoginFormKeys.email]: '',
         [LoginFormKeys.password]: ''
     });
@@ -53,6 +53,7 @@ export default function Login() {
                 <button type="text" className={style.submit}>
                     Login
                 </button>
+                {error && <p className={style.errorMessage} style={{ color: 'red' }}>{error}</p>}
             </form>
         </div>
     );

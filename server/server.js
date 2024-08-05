@@ -1426,12 +1426,30 @@
             }
         },
         comments: {
-            "0a272c58-b7ea-4e09-a000-7ec988248f66": {
-                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
-                content: "Great recipe!",
-                recipeId: "8f414b4f-ab39-4d36-bedb-2ad69da9c830",
-                _createdOn: 1614260681375,
-                _id: "0a272c58-b7ea-4e09-a000-7ec988248f66"
+            "4f41657e-c46c-42e3-917c-865d79467939": {
+                _ownerId: "1754521e-ed51-46a1-b5a8-ee0f82e9cc3a",
+                applianceId: "17bfe2b8-488f-45c3-9606-af1ff81335ef",
+                username: "Pesho",
+                text: "I purchased this washing machine a few weeks ago, and I couldn’t be happier with my choice! It provides the perfect balance of performance and convenience.",
+                _createdOn: 1722876298396,
+                _id: "4f41657e-c46c-42e3-917c-865d79467939"
+            },
+            "dbaedc90-9ed2-48ca-8a94-6314fc8d8816": {
+                _ownerId: "1754521e-ed51-46a1-b5a8-ee0f82e9cc3a",
+                applianceId: "198411db-64ce-44e4-b15d-977219608893",
+                username: "Peter",
+                text: "I’ve been using this oven for a few months now, and it has exceeded my expectations. It combines modern features with user-friendly controls, making it a fantastic addition to my kitchen.",
+                _createdOn: 1722876428619,
+                _id: "dbaedc90-9ed2-48ca-8a94-6314fc8d8816"
+            },
+            "a4e64e0b-9af9-48f4-b41e-7ef3dc360063": {
+                _ownerId: "1754521e-ed51-46a1-b5a8-ee0f82e9cc3a",
+                applianceId: "198411db-64ce-44e4-b15d-977219608893",
+                username: "Ivaylo",
+                text: "Peter I’ve been considering this oven for a while and your insights are really helpful. I especially appreciate your mention of the even cooking and easy-to-clean features.",
+                replyToId: "dbaedc90-9ed2-48ca-8a94-6314fc8d8816",
+                _createdOn: 1722876454044,
+                _id: "a4e64e0b-9af9-48f4-b41e-7ef3dc360063"
             }
         },
         records: {

@@ -6,9 +6,10 @@ import style from './ApplianceComments.module.css';
 
 export default function ApplianceComments({ appliance }) {
     const [comments, setComments] = useState([]);
+    const [replyTo, setReplyTo] = useState(null);
     const { isAuthenticated, username, userId } = useContext(AuthContext);
     const inputRef = useRef(null);
-    
+
     let commentUsername;
 
     if (username?.includes('@')) {
@@ -40,7 +41,8 @@ export default function ApplianceComments({ appliance }) {
         const newComment = await commentService.createComment(
             appliance._id,
             commentUsername,
-            formData.get('comment')
+            formData.get('comment'),
+            replyTo
         );
 
         setComments(state => [...state, newComment]);
@@ -48,6 +50,7 @@ export default function ApplianceComments({ appliance }) {
         if (inputRef.current) {
             inputRef.current.value = '';
         }
+        setReplyTo(null);
     }
 
     const formatDate = (timestamp) => {
@@ -68,6 +71,14 @@ export default function ApplianceComments({ appliance }) {
         await commentService.deleteComment(commentId);
 
         setComments(prevComments => prevComments.filter(comment => comment._id !== commentId));
+    }
+
+    const onReply = (username, commentId) => {
+        if (inputRef.current) {
+            inputRef.current.value = username + ' ';
+            inputRef.current.focus();
+            setReplyTo(commentId);
+        }
     }
 
     return (
@@ -119,71 +130,79 @@ export default function ApplianceComments({ appliance }) {
 
                         return (
                             <ul key={comment._id} className={style.userComment}>
-                                <div className={style.commentBody}>
-                                    <span className={style.user}>{comment.username}:</span>
-                                    <p>{comment.text}</p>
-                                    <div className={style.commentToolbar}>
-                                        <div className={style.commentDetails}>
-                                            <ul>
-                                                <li>
-                                                    <i className={`${style.fa} ${style.faClock}`} /> {timeString}
-                                                </li>
-                                                <li>
-                                                    <i className={`${style.fa} ${style.faCalendar}`} /> {dateString}
-                                                </li>
-                                                {isAuthenticated && (
-                                                <li className={style.btns}>
-                                                    <button className={style.replyBtn}>
-                                                        <img className={style.replyImg} src="/images/reply-16.png" alt="reply" />
-                                                    </button>
-                                                </li>
-                                                )}
-                                                {userId === comment._ownerId && (
-                                                <li className={style.btns}>
-                                                    <button className={style.deleteBtn} onClick={() => onDelete(comment._id)} >
-                                                        <img className={style.deleteImg} src="/images/waste_bin.png" alt="delte" />
-                                                    </button>
-                                                </li>
-                                                )}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* start user replies */}
-                                <li className={style.replay}>
-                                    {/* the comment body */}
+                                {!comment.replyToId ? (
                                     <div className={style.commentBody}>
-                                        <span className={style.user}>Andrew Johnson:</span>
-                                        <div className={style.repliedTo}>
-                                            <p><span className={style.user}>John Smith</span> Sample answer!</p>
-                                        </div>
-                                        {/* comments toolbar */}
+                                        <span className={style.user}>{comment.username}:</span>
+                                        <p>{comment.text}</p>
                                         <div className={style.commentToolbar}>
-                                            {/* inc. date and time */}
                                             <div className={style.commentDetails}>
                                                 <ul>
                                                     <li>
-                                                        <i className={`${style.fa} ${style.faClockReply}`} /> 14:52
+                                                        <i className={`${style.fa} ${style.faClock}`} /> {timeString}
                                                     </li>
                                                     <li>
-                                                        <i className={`${style.fa} ${style.faCalendar}`} /> 04/01/2015
+                                                        <i className={`${style.fa} ${style.faCalendar}`} /> {dateString}
                                                     </li>
-                                                    <li className={style.btns}>
-                                                        <button className={style.replyBtn}>
-                                                            <img className={style.replyImg} src="/images/reply-16.png" alt="reply" />
-                                                        </button>
-                                                    </li>
-                                                    <li className={style.btns}>
-                                                        <button className={style.deleteBtn}>
-                                                            <img className={style.deleteImg} src="/images/waste_bin.png" alt="delte" />
-                                                        </button>
-                                                    </li>
+                                                    {isAuthenticated && (
+                                                        <li className={style.btns}>
+                                                            <button className={style.replyBtn} onClick={() => onReply(comment.username, comment._id)}>
+                                                                <img className={style.replyImg} src="/images/reply-16.png" alt="reply" />
+                                                            </button>
+                                                        </li>
+                                                    )}
+                                                    {userId === comment._ownerId && (
+                                                        <li className={style.btns}>
+                                                            <button className={style.deleteBtn} onClick={() => onDelete(comment._id)} >
+                                                                <img className={style.deleteImg} src="/images/waste_bin.png" alt="delte" />
+                                                            </button>
+                                                        </li>
+                                                    )}
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                ) : ''}
+
+                                {/* start user replies */}
+                                {comment.replyToId ? (
+                                    <li className={style.replay}>
+                                        {/* the comment body */}
+                                        <div className={style.commentBody}>
+                                            <span className={style.user}>{comment.username}:</span>
+                                            <div className={style.repliedTo}>
+                                                <p><span className={style.user}>{comment.text.split(' ')[0]}</span> {comment.text.split(' ').slice(1).join(' ')}</p>
+                                            </div>
+                                            {/* comments toolbar */}
+                                            <div className={style.commentToolbar}>
+                                                {/* inc. date and time */}
+                                                <div className={style.commentDetails}>
+                                                    <ul>
+                                                        <li>
+                                                            <i className={`${style.fa} ${style.faClockReply}`} /> {timeString}
+                                                        </li>
+                                                        <li>
+                                                            <i className={`${style.fa} ${style.faCalendar}`} /> {dateString}
+                                                        </li>
+                                                        {isAuthenticated && (
+                                                            <li className={style.btns} onClick={() => onReply(comment.username, comment._id)}>
+                                                                <button className={style.replyBtn}>
+                                                                    <img className={style.replyImg} src="/images/reply-16.png" alt="reply" />
+                                                                </button>
+                                                            </li>
+                                                        )}
+                                                        {userId === comment._ownerId && (
+                                                            <li className={style.btns}>
+                                                                <button className={style.deleteBtn} onClick={() => onDelete(comment._id)} >
+                                                                    <img className={style.deleteImg} src="/images/waste_bin.png" alt="delte" />
+                                                                </button>
+                                                            </li>
+                                                        )}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ) : ''}
                             </ul>
                         );
                     })}

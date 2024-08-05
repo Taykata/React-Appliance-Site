@@ -16,14 +16,26 @@ export const getAllApplianceComments = async (applianceId) => {
     };
 }
 
-export const createComment = async (applianceId, username, text) => {
-    const newComment = await request.post(baseUrl, {
-        applianceId,
-        username,
-        text
-    });
+export const createComment = async (applianceId, username, text, replyToId) => {
 
-    return newComment;
+    if (replyToId) {
+        const newComment = await request.post(baseUrl, {
+            applianceId,
+            username,
+            text,
+            replyToId
+        });
+
+        return newComment;
+    } else {
+        const newComment = await request.post(baseUrl, {
+            applianceId,
+            username,
+            text
+        });
+
+        return newComment;
+    }
 }
 
 export const deleteComment = async (commentId) => {

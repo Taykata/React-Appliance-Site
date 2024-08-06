@@ -141,7 +141,7 @@ export default function ApplianceComments({ appliance }) {
                             <ul key={comment._id} className={style.userComment}>
                                 {!comment.replyToId ? (
                                     <div className={style.commentBody}>
-                                        <span className={style.user}>{comment.username}:</span>
+                                        <span className={style.user}>{comment.username}{appliance._ownerId === comment._ownerId && <span className={style.user}> [owner]</span>}:</span>
                                         <p>{comment.text}</p>
                                         <div className={style.commentToolbar}>
                                             <div className={style.commentDetails}>
@@ -177,7 +177,7 @@ export default function ApplianceComments({ appliance }) {
                                     <li className={style.replay}>
                                         {/* the comment body */}
                                         <div className={style.commentBody}>
-                                            <span className={style.user}>{comment.username}:</span>
+                                            <span className={style.user}>{comment.username}{appliance._ownerId === comment._ownerId && <span className={style.user}> [owner]</span>}:</span>
                                             <div className={style.repliedTo}>
                                                 <p><span className={style.user}>{comment.text.split(' ')[0]}</span> {comment.text.split(' ').slice(1).join(' ')}</p>
                                             </div>

@@ -20,6 +20,11 @@ export default function useForm(submitHandler, initialValues) {
             return;
         }
 
+        if (e.target[1].value.includes(' ')) {
+            setError('Password cannot contain spaces.');
+            return;
+        }
+
         try {
             await submitHandler(values);
             setError('');
